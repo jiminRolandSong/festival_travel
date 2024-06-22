@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<h1>Festivals</h1>
+<!--Begin col-->
+<div class="column">
+    {% for festival in fest %}
+    <p>
+        <a href="{% url 'festival-item' slug=festival.slug %}">
+            {{ festival.name }}
+            </a>
+        <span class="location">
+            {{ festival.location}}
+        </span>
+    </p>
+    {% endfor %}
+</div>
+<!--End col-->
+{% endblock %}
