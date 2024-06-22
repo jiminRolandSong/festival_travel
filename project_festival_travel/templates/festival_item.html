@@ -1,0 +1,41 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
+<section>
+   <article>
+      <h1>Festival Details</h1>
+      <span>
+        <a href="{% url 'festivals' %}">Festivals</a>/
+         {{festival.name}}
+      </span>
+      <!--Begin row-->
+      <div class="row">
+         <!--Begin col-->
+         <div class="column">
+            <h2>
+                {{ festival.name }}
+            </h2>
+            <p>
+                Location: {{ festival.location }}
+            </p>
+            <p>
+                Start Date: {{ festival.start_date }}
+            </p>
+            <p>
+                End Date: {{ festival.end_date }}
+            </p>
+            <p>
+                Description: {{ festival.description }}
+            </p>
+         </div>
+         <!--End col-->
+         <!--Begin col-->
+         <div class="column">
+            <img src="">
+        </div>
+         <!--End col-->
+      </div>
+      <!--End row-->
+   </article>
+</section>
+{% endblock %}
