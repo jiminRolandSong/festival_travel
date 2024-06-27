@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Your Cart</h1>
+<table>
+    {% for item in cart %}
+    <div>
+        <p>Name: {{ item.package.name }}</p>
+        <p>Quantity: {{ item.quantity }}</p>
+        <p>Price: {{ item.package.price }}</p>
+    </div>
+
+    {% endfor %}
+    <div>
+        <a href="{% url 'checkout' %}">
+            {% csrf_token %}
+            <button type="submit">Check Out</button>
+         </a>
+        </div>
+</table>
+
+{% endblock %}

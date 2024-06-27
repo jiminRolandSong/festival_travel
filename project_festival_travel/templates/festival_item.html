@@ -11,7 +11,7 @@
       <!--Begin row-->
       <div class="row">
          <!--Begin col-->
-         <div class="column">
+        <div class="column">
             <h2>
                 {{ festival.name }}
             </h2>
@@ -27,13 +27,23 @@
             <p>
                 Description: {{ festival.description }}
             </p>
-         </div>
-         <!--End col-->
-         <!--Begin col-->
-         <div class="column">
+        </div>
+
+        <div class="column">
             <img src="">
         </div>
-         <!--End col-->
+
+        <div class="column">
+            <h2> Packages with this festival</h2>
+            {% for package in packages %}
+            <div>
+                <a href="{% url 'package-item' slug=package.slug %} "> {{package.name}} </a>
+            </div>
+            {% endfor %}
+
+        </div>
+
+
       </div>
       <!--End row-->
    </article>

@@ -14,18 +14,23 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'slug']
         
 class FestivalSerializer(serializers.ModelSerializer):
-    category = CategorySerializer(read_only=True)
     class Meta:
         model = Festival
-        fields = ['id', 'category', 'name', 'slug', 'location', 'start_date', 'end_date', 'description']
+        fields = ['id', 'name', 'slug', 'location', 'start_date', 'end_date', 'description']
         
 class PackageSerializer(serializers.ModelSerializer):
-    category = CategorySerializer(read_only=True)
-    festival = FestivalSerializer(read_only=True)
-    
+    category= serializers.PrimaryKeyRelatedField(
+        queryset=Category.objects.all(),
+        write_only=True,
+    )
+    festival = serializers.PrimaryKeyRelatedField(
+        queryset=Festival.objects.all(),
+        write_only=True,
+    )
+   
     class Meta:
         model = Package
-        fields = ['id', 'category', 'festival', 'name', 'slug', 'price',
+        fields = ['id', 'category', 'festival',  'name', 'slug', 'price',
                   'description', 'featured', 'availability']
 
 class CartSerializer (serializers.ModelSerializer): 
@@ -55,4 +60,4 @@ class OrderItemSerializer (serializers.ModelSerializer):
     
     class Meta:
         model = OrderItem
-        fields = ['id', 'user', 'package', 'quantity', 'price']
+        fields = ['id', 'user', 'order', 'package', 'quantity', 'price']
