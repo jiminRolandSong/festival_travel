@@ -1,0 +1,46 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
+<section>
+   <article>
+      
+      <span>
+        <a href="{% url 'packages' %}">Packages</a>/
+         {{festival.name}}
+      </span>
+      <!--Begin row-->
+      <h1>Package Details</h1>
+      <div class="row">
+         <!--Begin col-->
+         <div class="column">
+            <h2>
+                Name: {{ package.name }}
+            </h2>
+            <p>
+                Catagory: {{ package.category}}
+            </p>
+            <p>
+                Festival: {{ package.festival}}
+            </p>
+            <p>
+                Price: {{ package.price }}
+            </p>
+            <p>
+                Description: {{ package.description }}
+            </p>
+         </div>
+         <div class="column">
+            <img src="">
+         </div>
+         <a href="{% url 'add-to-cart' slug=package.slug%}">
+            {% csrf_token %}
+            <button type="submit">Add to Cart</button>
+         </a>
+         </form>
+        </div>
+
+      </div>
+
+   </article>
+</section>
+{% endblock %}

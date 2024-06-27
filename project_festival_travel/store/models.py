@@ -8,7 +8,7 @@ class Category(models.Model):
     slug = models.SlugField(unique=True)
     
     def __str__(self) -> str:
-        return self.title
+        return self.name
     
 class Festival(models.Model):
     name = models.CharField(max_length=255)
@@ -19,7 +19,7 @@ class Festival(models.Model):
     description = models.TextField()
     
     def __str__(self) -> str:
-        return self.title
+        return self.name
 
 
 class Package(models.Model):
@@ -33,7 +33,7 @@ class Package(models.Model):
     availability = models.BooleanField(db_index=True)
     
     def __str__(self) -> str:
-        return self.title
+        return self.name
     
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -58,6 +58,7 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
     package = models.ForeignKey(Package, on_delete=models.CASCADE)
     quantity = models.SmallIntegerField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
