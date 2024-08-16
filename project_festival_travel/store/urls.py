@@ -25,7 +25,7 @@ urlpatterns = [
     
     path('checkout', views.checkout, name='checkout'),
     path('current-order/<int:id>', views.current_order, name='current-order'),
-    #path('orders', views.OrdersView.as_view(), name='orders'),
+    path('orders', views.order_check, name='orders'),
     #path('orders/<int:pk>', views.OrderItemView.as_view(), name='orderitem'),
     path('api/orders', views.OrderAPIView.as_view(), name='orders-api'),
     path('api/orders/<int:pk>', views.OrderItemAPIView.as_view(), name='orderitem-api'),

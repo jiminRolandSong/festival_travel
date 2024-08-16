@@ -138,11 +138,12 @@ def checkout(request):
                             status = False,
                             date = date.today())
     for cart in cartItems:
-        OrderItem.objects.create(user = user,
+        orderitem = OrderItem.objects.create(user = user,
                                  order = order,
                                      package = cart.package,
                                      quantity = cart.quantity,
                                      price = cart.price)
+        orderitem.save()
         order.total_price += cart.price
         order.total_quantity += 1
 
@@ -165,12 +166,12 @@ class OrderAPIView(generics.ListCreateAPIView):
     def get(self, request):
         user = request.user
         if request.user.groups.filter(name='managers').exists():
-            queryset = OrderItem.objects.all()
-            serializer = OrderItemSerializer(queryset, many=True)
+            queryset = Order.objects.all()
+            serializer = OrderSerializer(queryset, many=True)
             return Response(serializer.data)
         else:
-            queryset = OrderItem.objects.filter(user = user)
-            serializer = OrderItemSerializer(queryset, many=True)
+            queryset = Order.objects.filter(user = user)
+            serializer = OrderSerializer(queryset, many=True)
             return Response(serializer.data)
         
     def post(self, request):
@@ -185,26 +186,45 @@ class OrderAPIView(generics.ListCreateAPIView):
                                 status = False,
                                 date = date.today())
         for cart in cartItems:
-            OrderItem.objects.create(user = user,
+            orderitem = OrderItem.objects.create(user = user,
                                     order = order,
                                         package = cart.package,
                                         quantity = cart.quantity,
                                         price = cart.price)
+            orderitem.save()
         order.total_price += cart.price
         order.total_quantity += 1
         cartItems.delete()
         return Response()
     
+def order_check(request):
+    order = None
+    order_num = request.GET.get('order_number', None)
+    order_items = []
+    if order_num:       
+        try:
+            order = Order.objects.get(id=order_num)
+            order_items = OrderItem.objects.filter(order=order)        
+        except:
+            order = None
+            order_items = []
+    
+    order_dict = {'order': order, 'order_items': order_items}
+    return render(request, 'order.html', order_dict)
+        
+
+    
 class OrderItemAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Order.objects.all()
-    serializer_class = OrderSerializer
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
     
     def get_permissions(self):
         return [IsAuthenticated()]
     
     def get(self, request, pk):
-        queryset = Order.objects.filter(user = pk)
-        serializer = OrderSerializer(queryset, many=True)
+        user = request.user
+        queryset = OrderItem.objects.filter(order = pk)
+        serializer = OrderItemSerializer(queryset, many=True)
         return Response(serializer.data)
         
     def delete(self, request, pk):

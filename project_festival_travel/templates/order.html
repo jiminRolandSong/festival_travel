@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Check Your Order Status</h2>
+    <form method="GET" action="{% url 'orders' %}">
+        <label for="order_number">Enter your order number:</label>
+        <input type="text" id="order_number" name="order_number" required>
+        <button type="submit">View Order</button>
+    </form>
+
+    {% if order %}
+        <h3>Order Details</h3>
+        <p>Order Number: {{ order.id }}</p>
+        <p>Order Date: {{ order.date }}</p>
+        <p>Total Quantity: {{ order.total_quantity }}</p>
+        <p>Total Price: ${{ order.total_price }}</p>
+        <h3>Items:</h3>
+        {% if order_items %}
+            {% for item in order_items %}
+                <li>
+                    <p>{{ item.package.name }}</p>
+                    <p>Quantity: {{ item.quantity }} Price: ${{ item.price }}</p>
+                </li>
+            {% endfor %}
+        {% else %}
+            <p>No items found for this order.</p>
+        {% endif %}
+    {% else %}
+        <p>No order found with that number.</p>
+    {% endif %}
+{% endblock %}
