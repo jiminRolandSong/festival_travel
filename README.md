@@ -4,7 +4,7 @@
 - This is a Django-based e-commerce platform designed for selling and managing festival travel packages. 
 The platform allows users to browse through various categories, festivals, packages, add packages to a cart, place orders and check completed orders. The project also includes a set of RESTful APIs for interacting with the backend.
 
-* Features
+** Features
 - Browse Categories: View a list of festival categories.
 - Browse Festivals: View festivals with detailed information on each festival.
 - Browse Packages: View packages associated with specific festivals.
