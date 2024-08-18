@@ -10,9 +10,9 @@ The platform allows users to browse through various categories, festivals, packa
 - Order Management: Place orders for packages in your cart, and manage your orders.
 
 
-# URL Structure
+## URL Structure
 
-# Web Views
+### Web Views
 - Home:
 path('', views.home, name='home')
 
@@ -36,7 +36,7 @@ path('checkout', views.checkout, name='checkout')
 path('current-order/<int:id>', views.current_order, name='current-order')
 path('orders', views.order_check, name='orders'),
 
-# API Endpoints
+### API Endpoints
 - Categories API:
 path('api/categories', views.CategoriesAPIView.as_view(), name='category-api')
 
