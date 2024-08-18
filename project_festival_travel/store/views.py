@@ -10,11 +10,11 @@ from datetime import date
 
 OrderItem.objects.all().delete()
 
-# Create your views here.
+#Homepage of the website
 def home(request):
-    path = request.path
     return render(request, "home.html")
 
+#Shows Categories of each Festival Travel Packages
 def categories(request):
     categories = Category.objects.all()
     cate_dict = {'cate': categories}

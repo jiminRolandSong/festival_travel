@@ -4,15 +4,15 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Category(models.Model):
-    name = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True)
+    name = models.CharField(max_length=255) 
+    slug = models.SlugField(unique=True) 
     
     def __str__(self) -> str:
         return self.name
     
 class Festival(models.Model):
-    name = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True)
+    name = models.CharField(max_length=255) 
+    slug = models.SlugField(unique=True) 
     location = models.CharField(max_length=255)
     start_date = models.DateField()
     end_date = models.DateField()
