@@ -36,7 +36,7 @@ path('checkout', views.checkout, name='checkout')
 path('current-order/<int:id>', views.current_order, name='current-order')
 path('orders', views.order_check, name='orders'),
 
-## API Endpoints
+# API Endpoints
 - Categories API:
 path('api/categories', views.CategoriesAPIView.as_view(), name='category-api')
 
