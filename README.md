@@ -10,7 +10,7 @@ The platform allows users to browse through various categories, festivals, packa
 - Order Management: Place orders for packages in your cart, and manage your orders.
 
 
-## URL Structure
+# URL Structure
 
 # Web Views
 - Home:
