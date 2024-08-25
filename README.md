@@ -9,6 +9,7 @@ The platform allows users to browse through various categories, festivals, packa
 - RESTful API for packages and orders
 
 ## Technologies Used
+- Python
 - Django 
 - Django REST Framework
 - MySQL
