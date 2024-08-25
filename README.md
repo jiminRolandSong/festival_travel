@@ -3,7 +3,6 @@
 The platform allows users to browse through various categories, festivals, packages, add packages to a cart, place orders and check completed orders. The project also includes a set of RESTful APIs for interacting with the backend.
 
 ## Features
-- User Authentication (Login, Registration)
 - Browse Festival Packages
 - Add items to cart
 - Checkout and manage orders
